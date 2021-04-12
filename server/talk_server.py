@@ -11,6 +11,7 @@ c_pool = client_pool.ClientPool(sel)
 def accept_wrapper(key, mask):
     lsock = key.fileobj
     conn, addr = lsock.accept()
+    conn.setblocking(False)
     c_pool.add_connection(addr[0], addr[1], conn)
 
 def start_listen_to(ip, port):
